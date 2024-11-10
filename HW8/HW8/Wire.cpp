@@ -1,4 +1,6 @@
 #include "Wire.h"
+#include <iostream>
+#include <fstream>
 
 Wire::Wire()
 {
@@ -14,26 +16,27 @@ void Wire::setHistory(char his)
 
 void Wire::setDrives(vector<Gate*> gate)
 {
+
 }
 
 char Wire::getValue() const
 {
-	return 0;
+	return value;
 }
 
 string Wire::getName() const
 {
-	return string();
+	return name;
 }
 
 vector<Gate*> Wire::getDrives() const
 {
-	return vector<Gate*>();
+	return out;
 }
 
 int Wire::getIndex() const
 {
-	return 0;
+	return index;
 }
 
 void Wire::printHistory() const

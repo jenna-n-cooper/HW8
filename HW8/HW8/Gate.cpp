@@ -1,4 +1,6 @@
 #include "Gate.h"
+#include <iostream>
+#include <fstream>
 
 Gate::Gate(Wire* input1, Wire* input2, Wire* output, int d, string t)
 {
