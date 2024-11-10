@@ -8,6 +8,7 @@ int main() {
 
 	//hello jenna
 
+	cout << "hello" << endl;
 
 	return 0;
 }
