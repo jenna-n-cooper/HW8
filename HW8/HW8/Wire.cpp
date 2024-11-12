@@ -27,7 +27,7 @@ void Wire::setValue(double val)
 
 }
 
-void Wire::setHistory(char his)
+void Wire::setHistory(double his)
 {
 }
 
