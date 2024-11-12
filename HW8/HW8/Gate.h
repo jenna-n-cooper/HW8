@@ -18,6 +18,7 @@ public:
 	int getDelay() const;
 	Wire* getInput(int num) const;
 	Wire* getOutput() const;
+	double negateVal(double val) const;
 
 	double returnVal(Wire* input1, Wire* input2, Wire* output, int d, string t) const;
 
