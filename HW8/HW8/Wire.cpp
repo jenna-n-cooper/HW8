@@ -36,7 +36,7 @@ void Wire::setDrives(vector<Gate*> gate)
 
 }
 
-char Wire::getValue() const
+double Wire::getValue() const
 {
 	return value;
 }
