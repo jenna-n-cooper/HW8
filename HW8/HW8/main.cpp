@@ -13,8 +13,6 @@ int main() {
 	string vecFileName;
 	string cirName;
 
-	vector <Wire*> w(9);
-
 	cout << "What circuit? (ex. circuit8) ";
 	getline(cin, cirName);
 
@@ -33,6 +31,7 @@ int main() {
 
 	}
 
+
 	Wire* newWire;
 
 	string line;
@@ -40,7 +39,17 @@ int main() {
 	string ioo;
 	string wn;
 	int wnum;
+	int num_line = 0;
+
 	
+	while (!inFile.eof()) {
+		getline(inFile, line);
+		num_line++;
+	}
+	vector <Wire*> w(num_line);
+	
+	inFile.seekg(fstream::beg);
+
 	getline(inFile, line);
 	
 	while (!inFile.eof()) {
