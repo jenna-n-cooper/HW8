@@ -16,8 +16,6 @@ int main() {
 	string cirName;
 
 	vector <Wire*> w(9);
-	vector <Wire*> inputs;
-	vector <Wire*> outputs;
 
 	cout << "What circuit? (ex. circuit8) ";
 	getline(cin, cirName);

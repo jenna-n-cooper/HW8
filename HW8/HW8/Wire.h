@@ -11,7 +11,7 @@ private:
 	string name;
 	vector<Gate*> out;
 	int index;
-	vector<char> history;
+	vector<double> history;
 	/*vector <Wire*> w;
 	vector <Wire*> inputs;
 	vector <Wire*> outputs;*/

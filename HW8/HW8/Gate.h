@@ -14,7 +14,6 @@ private:
 
 public:
 	Gate(Wire* input1, Wire* input2, Wire* output, int d, string t);
-
 	int getDelay() const;
 	Wire* getInput(int num) const;
 	Wire* getOutput() const;
