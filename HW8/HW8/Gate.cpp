@@ -1,10 +1,14 @@
 #include "Gate.h"
+#include "Wire.h"
 #include <iostream>
+#include <algorithm>//for the min() and max() functions
 #include <fstream>
+
+using namespace std;
 
 Gate::Gate(Wire* input1, Wire* input2, Wire* output, int d, string t)
 {
-	in1 = input1;//do I need to do a deep copy here?
+	in1 = input1;
 	in2 = input2;
 	out = output;
 	delay = d;
@@ -37,13 +41,13 @@ Wire* Gate::getOutput() const
 	return out;
 }
 
-char Gate::returnVal(Wire* input1, Wire* input2, Wire* output, int d, string t) const
+double Gate::returnVal(Wire* input1, Wire* input2, Wire* output, int d, string t) const
 {
 	if (t == "AND") {
-
+		return min(input1->getValue(), input2->getValue());
 	}
 	else if (t == "OR") {
-
+		return max(input1->getValue(), input2->getValue());
 	}
 
 	return 0;

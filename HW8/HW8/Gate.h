@@ -19,6 +19,6 @@ public:
 	Wire* getInput(int num) const;
 	Wire* getOutput() const;
 
-	char returnVal(Wire* input1, Wire* input2, Wire* output, int d, string t) const;
+	double returnVal(Wire* input1, Wire* input2, Wire* output, int d, string t) const;
 
 };

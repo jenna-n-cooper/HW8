@@ -1,4 +1,5 @@
 #include "Wire.h"
+#include "Gate.h"
 #include <iostream>
 #include <fstream>
 
@@ -6,7 +7,7 @@ Wire::Wire()
 {
 }
 
-void Wire::setValue(char val)
+void Wire::setValue(double val)
 {
 }
 
@@ -19,7 +20,7 @@ void Wire::setDrives(vector<Gate*> gate)
 
 }
 
-char Wire::getValue() const
+double Wire::getValue() const
 {
 	return value;
 }

@@ -7,7 +7,7 @@ class Gate;
 
 class Wire {
 private:
-	char value;
+	int value;
 	string name;
 	vector<Gate*> out;
 	int index;
@@ -16,11 +16,11 @@ private:
 public:
 	Wire();
 
-	void setValue(char val);
+	void setValue(double val);//when a wire has value X, set it to value 0.5
 	void setHistory(char his);
 	void setDrives(vector<Gate*> gate);
 
-	char getValue() const;
+	double getValue() const;
 	string getName() const;
 	vector<Gate*> getDrives() const;
 	int getIndex() const;
