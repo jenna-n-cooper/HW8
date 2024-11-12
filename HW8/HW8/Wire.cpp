@@ -59,3 +59,10 @@ int Wire::getIndex() const
 void Wire::printHistory() const
 {
 }
+
+bool Wire::getorCreateWire()
+{
+
+	if (!w.at(index))
+	return false;
+}

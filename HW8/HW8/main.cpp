@@ -3,9 +3,7 @@
 #include <iostream>
 #include <fstream>
 #include "Wire.h"
-//#include "Wire.cpp"
 #include "Gate.h"
-//#include "Gate.cpp"
 
 using namespace std;
 
@@ -38,8 +36,8 @@ int main() {
 	Wire* newWire;
 
 	string line;
-	string ioo;
 	
+	string ioo;
 	string wn;
 	int wnum;
 	
