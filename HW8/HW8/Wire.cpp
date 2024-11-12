@@ -6,8 +6,25 @@ Wire::Wire()
 {
 }
 
-void Wire::setValue(char val)
+void Wire::setName(string cname)
 {
+
+	name = cname;
+
+}
+
+void Wire::setIndex(int cindex)
+{
+
+	index = cindex;
+
+}
+
+void Wire::setValue(double val)
+{
+
+	value = val;
+
 }
 
 void Wire::setHistory(char his)

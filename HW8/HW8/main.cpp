@@ -2,24 +2,33 @@
 #include <vector>
 #include <iostream>
 #include <fstream>
+#include "Wire.h"
+//#include "Wire.cpp"
+#include "Gate.h"
+//#include "Gate.cpp"
+
 using namespace std;
 
 int main() {
 
-	string cirfilename;
-	string vecfilename;
+	string cirFileName;
+	string vecFileName;
+	string cirName;
 
-	string currWord;
+	vector <Wire*> w(9);
+	vector <Wire*> inputs;
+	vector <Wire*> outputs;
 
-	cout << "What is the name of the circuit file? (ex. circuit.txt) ";
-	getline(cin, cirfilename);
+	cout << "What circuit? (ex. circuit8) ";
+	getline(cin, cirName);
 
-	cout << "What is the name of the vector file? ";
-	getline(cin, vecfilename);
+	cirFileName = cirName + ".txt";
+	vecFileName = cirName + "_V.txt";
 	
 	ifstream inFile;
 
-	inFile.open(cirfilename);
+
+	inFile.open(cirFileName);
 
 	if (inFile.fail()) {
 
@@ -28,39 +37,38 @@ int main() {
 
 	}
 
+	Wire* newWire;
+
 	string line;
 	string ioo;
-	char wn;
+	
+	string wn;
 	int wnum;
-	int line_num = 0;
-	vector<char>inwiresname;
-	vector<char>outwiresname;
-	vector<int>wiresnum;
-
-	//just messing with file input right now, this is not exactly how it'll be i dont think
+	
+	getline(inFile, line);
+	
 	while (!inFile.eof()) {
-		
-		line_num++;
-		getline(inFile, line);
-		
-	}
-	inFile.seekg(21, fstream::beg);
-	while (line_num > 2) {
+
+		newWire = new Wire();
 		
 		inFile >> ioo >> wn >> wnum;
 
 		if (ioo == "INPUT") {
-			inwiresname.push_back(wn);
-			wiresnum.push_back(wnum);
+			newWire->setName(wn);
+			newWire->setIndex(wnum);
+			newWire->setValue(0.5);
+			
+			w.at(wnum) = newWire;
 
 		}
 		else if (ioo == "OUTPUT") {
-			outwiresname.push_back(wn);
-			wiresnum.push_back(wnum);
+			newWire->setName(wn);
+			newWire->setIndex(wnum);
+			newWire->setValue(0.5);
+
+			w.at(wnum) = newWire;
 		}
 		
-		
-		line_num--;
 	}
 
 	inFile.close();

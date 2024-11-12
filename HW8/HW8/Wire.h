@@ -7,16 +7,23 @@ class Gate;
 
 class Wire {
 private:
-	char value;
+	double value;
 	string name;
 	vector<Gate*> out;
 	int index;
 	vector<char> history;
+	/*vector <Wire*> w;
+	vector <Wire*> inputs;
+	vector <Wire*> outputs;*/
 
 public:
 	Wire();
 
-	void setValue(char val);
+	void setName(string cname);
+	void setIndex(int cindex);
+	void setValue(double val);
+
+
 	void setHistory(char his);
 	void setDrives(vector<Gate*> gate);
 
