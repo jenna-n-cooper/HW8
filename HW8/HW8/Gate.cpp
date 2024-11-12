@@ -43,19 +43,7 @@ Wire* Gate::getOutput() const
 
 double Gate::negateVal(double val) const
 {
-	if (val == 0) {
-		return 1.0;
-	}
-	else if (val == 1) {
-		return 0.0;
-	}
-	else if (val == 0.5) {
-		return 0.5;
-	}
-	else {
-		cout << "invalid value";
-		return 0.0;
-	}
+	return 1 - val;
 }
 
 double Gate::returnVal(Wire* input1, Wire* input2, Wire* output, int d, string t) const
