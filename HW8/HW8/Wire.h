@@ -12,9 +12,6 @@ private:
 	vector<Gate*> out;
 	int index;
 	vector<double> history;
-	/*vector <Wire*> w;
-	vector <Wire*> inputs;
-	vector <Wire*> outputs;*/
 
 public:
 	Wire();
@@ -33,8 +30,6 @@ public:
 	int getIndex() const;
 	
 	void printHistory() const;
-
-	bool getorCreateWire();
 
 
 
