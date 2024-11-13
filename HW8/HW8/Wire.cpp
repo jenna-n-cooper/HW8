@@ -34,7 +34,7 @@ void Wire::setHistory(vector<double>his)
 	// takes in vector with values index at specific times
 	double curval = his.at(0);
 	
-	// goes through the whol vector
+	// goes through the whole vector
 	for (int i = 1; i < his.size(); ++i) {
 
 		// checks to see if the vector has something indexed
