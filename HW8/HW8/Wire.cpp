@@ -37,6 +37,12 @@ void Wire::setHistory(double his)
 void Wire::setDrives(vector<Gate*> gate)
 {
 
+	for (int i = 0; i < gate.size(); ++i) {
+
+		out.push_back(gate.at(i));
+
+	}
+
 }
 
 double Wire::getValue() const
