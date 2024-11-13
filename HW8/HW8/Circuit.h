@@ -10,7 +10,7 @@ public:
 
 	vector <Wire*> inputs;
 	vector <Wire*> outputs;
-	vector <Wire*> w;
+	vector <Wire*> wires;
 	vector <Gate*> gates;
 
 	Circuit(int numline);
