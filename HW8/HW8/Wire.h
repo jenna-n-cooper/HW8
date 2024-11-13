@@ -21,7 +21,7 @@ public:
 	void setValue(double val);
 
 
-	void setHistory(double his);
+	void setHistory(vector<double>history);
 	void setDrives(vector<Gate*> gate);
 
 	double getValue() const;
