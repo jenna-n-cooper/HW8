@@ -28,7 +28,9 @@ void Wire::setValue(double val)
 }
 
 void Wire::setHistory(double his)
-{//when an event is called, call the setHistory function
+{
+	// wait until event class to fix
+	history.push_back(his);
 
 }
 
@@ -76,7 +78,6 @@ void Wire::printHistory() const
 
 bool Wire::getorCreateWire()
 {
-
 	if (!w.at(index))
 	return false;
 }
