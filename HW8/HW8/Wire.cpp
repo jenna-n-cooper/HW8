@@ -61,6 +61,19 @@ int Wire::getIndex() const
 
 void Wire::printHistory() const
 {
+	cout << name << " ";
+	for (int i = 0; i < history.size(); i++) {
+		if (history.at(i) == 0.5) {
+			cout << "X";
+		}
+		else if (history.at(i) == 0) {
+			cout << "0";
+		}
+		else {
+			cout << "1";
+		}
+	}
+	cout << endl;
 }
 
 bool Wire::getorCreateWire()

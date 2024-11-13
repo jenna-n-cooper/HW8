@@ -47,9 +47,7 @@ int main() {
 		getline(inFile, line);
 		num_line++;
 	}
-	//vector <Wire*> w(num_line);
-
-	//w.resize(num_line);
+	Circuit cir(num_line);
 	
 	inFile.seekg(fstream::beg);
 
@@ -66,7 +64,8 @@ int main() {
 			newWire->setIndex(wnum);
 			newWire->setValue(0.5);
 			
-			w.at(wnum) = newWire;
+			cir.wires.at(wnum) = newWire;
+			cir.inputs.at(wnum) = newWire;
 
 		}
 		else if (ioo == "OUTPUT") {
@@ -74,7 +73,8 @@ int main() {
 			newWire->setIndex(wnum);
 			newWire->setValue(0.5);
 
-			w.at(wnum) = newWire;
+			cir.wires.at(wnum) = newWire;
+			cir.outputs.at(wnum) = newWire;
 		}
 		
 	}

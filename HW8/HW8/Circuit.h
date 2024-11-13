@@ -13,6 +13,8 @@ public:
 	vector <Wire*> w;
 	vector <Gate*> gates;
 
+	Circuit(int numline);
+
 
 
 };
