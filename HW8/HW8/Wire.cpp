@@ -28,7 +28,8 @@ void Wire::setValue(double val)
 }
 
 void Wire::setHistory(double his)
-{
+{//when an event is called, call the setHistory function
+
 }
 
 void Wire::setDrives(vector<Gate*> gate)
