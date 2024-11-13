@@ -10,8 +10,8 @@ public:
 
 	vector <Wire*> inputs;
 	vector <Wire*> outputs;
-	vector<Wire*> wires;
-	vector<Gate*> gates;
+	vector <Wire*> w;
+	vector <Gate*> gates;
 
 
 

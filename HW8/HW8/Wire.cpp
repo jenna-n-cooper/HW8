@@ -27,8 +27,11 @@ void Wire::setValue(double val)
 
 }
 
-void Wire::setHistory(char his)
+void Wire::setHistory(double his)
 {
+	// wait until event class to fix
+	history.push_back(his);
+
 }
 
 void Wire::setDrives(vector<Gate*> gate)
@@ -62,7 +65,6 @@ void Wire::printHistory() const
 
 bool Wire::getorCreateWire()
 {
-
 	if (!w.at(index))
 	return false;
 }

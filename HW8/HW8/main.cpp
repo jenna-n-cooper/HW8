@@ -4,6 +4,7 @@
 #include <fstream>
 #include "Wire.h"
 #include "Gate.h"
+#include "Circuit.h"
 
 using namespace std;
 
@@ -46,7 +47,9 @@ int main() {
 		getline(inFile, line);
 		num_line++;
 	}
-	vector <Wire*> w(num_line);
+	//vector <Wire*> w(num_line);
+
+	//w.resize(num_line);
 	
 	inFile.seekg(fstream::beg);
 
