@@ -27,7 +27,7 @@ void Wire::setValue(double val)
 
 }
 
-void Wire::setHistory(double his)
+void Wire::setHistory(vector<double>his)
 {
 	// wait until event class to fix
 	history.push_back(his);
@@ -75,5 +75,3 @@ void Wire::printHistory() const
 	}
 	cout << endl;
 }
-
-
