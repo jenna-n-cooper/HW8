@@ -27,10 +27,11 @@ int main() {
 
 	if (inFile.fail()) {
 
-		cout << "error opening file." << endl;
+		cout << "error opening circuit file." << endl;
 		return 1;
 
 	}
+
 
 
 	Wire* newWire;
@@ -52,30 +53,26 @@ int main() {
 	inFile.seekg(fstream::beg);
 
 	getline(inFile, line);
-	
+	//we have not read in the gates from the file yet
 	while (!inFile.eof()) {
-
-		newWire = new Wire();
-		
 		inFile >> ioo >> wn >> wnum;
-
-		if (ioo == "INPUT") {
-			newWire->setName(wn);
-			newWire->setIndex(wnum);
-			newWire->setValue(0.5);
-			
-			cir.wires.at(wnum) = newWire;
-			cir.inputs.at(wnum) = newWire;
-
-		}
-		else if (ioo == "OUTPUT") {
+		if (ioo == "INPUT" || ioo == "OUTPUT") {
+			newWire = new Wire();
 			newWire->setName(wn);
 			newWire->setIndex(wnum);
 			newWire->setValue(0.5);
 
 			cir.wires.at(wnum) = newWire;
-			cir.outputs.at(wnum) = newWire;
+
+			if (ioo == "INPUT") {
+				cir.inputs.at(wnum) = newWire;
+
+			}
+			else if (ioo == "OUTPUT") {
+				cir.outputs.at(wnum) = newWire;
+			}
 		}
+		
 		
 	}
 

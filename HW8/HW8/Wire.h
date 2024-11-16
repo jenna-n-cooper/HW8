@@ -7,7 +7,7 @@ class Gate;
 
 class Wire {
 private:
-	int value;
+	double value;
 	string name;
 	vector<Gate*> out;
 	int index;

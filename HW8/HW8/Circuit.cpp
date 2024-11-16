@@ -1,4 +1,5 @@
 #include "Circuit.h"
+#include "Wire.h"
 
 Circuit::Circuit(int numline)
 {
@@ -17,8 +18,9 @@ Wire* Circuit::getOrCreateWire(int num)
 		return wires.at(num);
 	}
 	else {
-		Wire w;
-		wires.at(num) = &w;
+		Wire* w;
+		w->setIndex(num);
+		wires.at(num) = w;
+		return wires.at(num);
 	}
-	return nullptr;
 }
