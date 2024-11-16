@@ -34,7 +34,7 @@ public:
 	
 	void printHistory() const;
 
-	bool getorCreateWire();
+
 
 
 

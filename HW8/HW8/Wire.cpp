@@ -76,8 +76,4 @@ void Wire::printHistory() const
 	cout << endl;
 }
 
-bool Wire::getorCreateWire()
-{
-	if (!w.at(index))
-	return false;
-}
+

@@ -10,10 +10,12 @@ public:
 	//we should probably make these private variables at some point 
 	vector <Wire*> inputs;
 	vector <Wire*> outputs;
-	vector <Wire*> w;
+	vector <Wire*> wires;
 	vector <Gate*> gates;
 
 	Circuit(int numline);
+	
+	Wire* getOrCreateWire(int num);
 
 
 
