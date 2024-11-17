@@ -34,14 +34,17 @@ int main() {
 
 
 
-	Wire* newWire;
+	Wire* newWire, *wireIn1, *wireIn2, *wireOut;
+	Gate* newGate;
 
 	string line;
 	
 	string ioo;
 	string wn;
+	string sTime;
 	int wnum;
 	int num_line = 0;
+	int in1, in2, out;
 
 	
 	while (!inFile.eof()) {
@@ -53,10 +56,10 @@ int main() {
 	inFile.seekg(fstream::beg);
 
 	getline(inFile, line);
-	//we have not read in the gates from the file yet
 	while (!inFile.eof()) {
-		inFile >> ioo >> wn >> wnum;
+		inFile >> ioo;
 		if (ioo == "INPUT" || ioo == "OUTPUT") {
+			inFile >> wn >> wnum;
 			newWire = new Wire();
 			newWire->setName(wn);
 			newWire->setIndex(wnum);
@@ -71,6 +74,21 @@ int main() {
 			else if (ioo == "OUTPUT") {
 				cir.outputs.at(wnum) = newWire;
 			}
+		}
+		else {
+			if (ioo == "NOT") {
+				inFile >> sTime >> in1 >> out;
+				wireIn2 = new Wire();
+			}
+			else {
+				inFile >> sTime >> in1 >> in2 >> out;
+				wireIn2 = cir.getOrCreateWire(in2);
+			}
+			
+			sTime = sTime.substr(0, sTime.size() - 2);
+			wireIn1 = cir.getOrCreateWire(in1);			
+			wireOut = cir.getOrCreateWire(out);
+			newGate = new Gate(wireIn1, wireIn2, wireOut, stoi(sTime), ioo);
 		}
 		
 		

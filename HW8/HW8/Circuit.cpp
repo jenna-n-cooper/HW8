@@ -18,7 +18,7 @@ Wire* Circuit::getOrCreateWire(int num)
 		return wires.at(num);
 	}
 	else {
-		Wire* w;
+		Wire* w = new Wire;
 		w->setIndex(num);
 		wires.at(num) = w;
 		return wires.at(num);

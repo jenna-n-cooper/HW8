@@ -15,7 +15,7 @@ private:
 
 public:
 	Wire();
-
+	//we need to make a destructor for the wires and probably also the gates
 	void setName(string cname);
 	void setIndex(int cindex);
 	void setValue(double val);
