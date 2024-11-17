@@ -55,7 +55,6 @@ int main() {
 		num_line++;
 	}
 	Circuit cir(num_line);
-	
 	inFile.seekg(fstream::beg);
 
 	getline(inFile, line);
