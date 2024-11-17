@@ -46,7 +46,7 @@ int main() {
 	string sTime, eventName;
 	int wnum, eventTime;
 	int num_line = 0;
-	int in1, in2, out;
+	int in1, in2, out, eventCount = 0;
 	double eventVal;
 
 	
@@ -113,7 +113,9 @@ int main() {
 
 	while (!inFile.eof()) {
 		inFile >> eventName >> eventTime >> eventVal;
-		newEvent = new Event(eventName, eventTime, eventVal);
+		eventCount++;
+		newEvent = new Event(eventName, eventTime, eventCount, eventVal);
+
 
 	}
 

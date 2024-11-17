@@ -6,9 +6,9 @@ using namespace std;
 class Event {
 public:
 	double val;
-	int time;
+	int time, count;
 	string name;
 
-	Event(string eventName, int eventTime, double eventVal);
+	Event(string eventName, int eventTime, int eventCount, double eventVal);
 
 };
