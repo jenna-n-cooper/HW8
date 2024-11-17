@@ -20,6 +20,7 @@ class priorityQueue {
 		int    getSKey()      const { return secondaryKey; }
 		string getString()    const { return s; }
 		friend bool operator<(const priorityQueue& p1, const priorityQueue& p2);
+	
 	private:
 		int   key;
 		int	  secondaryKey;
