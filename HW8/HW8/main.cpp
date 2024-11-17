@@ -6,6 +6,7 @@
 #include "Gate.h"
 #include "Circuit.h"
 #include "Event.h"
+#include "crtdbg.h"
 
 using namespace std;
 
