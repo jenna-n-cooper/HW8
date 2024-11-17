@@ -1,5 +1,6 @@
 #include "Circuit.h"
 #include "Wire.h"
+#include "Gate.h"
 
 Circuit::Circuit(int numline)
 {
@@ -28,16 +29,33 @@ Wire* Circuit::getOrCreateWire(int num)
 
 bool Circuit::gateOutputEquality(Event* event1)
 {
-	
+	Wire* origWire = getWireFromName(event1->name);
+	vector<Gate*> g = getGatesFromName(event1->name);
+	for (int i = 0; i < g.size(); i++) {
+		if (g.at(i)->getInput(1) == origWire) {
+
+		}
+	}
 	return false;
 }
 
-int Circuit::getWireIndexFromName(Wire* wire1, string wireName)
+Wire* Circuit::getWireFromName(string wireName)
 {
 	for (int i = 0; i < inputs.size(); i++) {
 		if (inputs.at(i)->getName() == wireName) {
-			return inputs.at(i)->getValue();
+			return inputs.at(i);
 		}
 	}
-	return -5;
+	return nullptr;
+}
+
+
+vector<Gate*> Circuit::getGatesFromName(string wireName)
+{
+	for (int i = 0; i < inputs.size(); i++) {
+		if (inputs.at(i)->getName() == wireName) {
+			return inputs.at(i)->getDrives();
+		}
+	}
+	return vector<Gate*>();
 }

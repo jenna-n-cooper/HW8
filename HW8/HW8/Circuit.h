@@ -21,6 +21,7 @@ public:
 	Wire* getOrCreateWire(int num);
 
 	bool gateOutputEquality(Event* event1);
-	int getWireIndexFromName(Wire* wire1, string wireName);
+	Wire* getWireFromName(string wireName);
+	vector<Gate*> getGatesFromName(string wireName);
 
 };
