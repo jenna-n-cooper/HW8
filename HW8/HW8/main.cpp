@@ -112,7 +112,7 @@ int main() {
 	getline(inFile, line);
 
 	while (!inFile.eof()) {
-		inFile >> eventName >> eventTime >> eventVal;
+		inFile >> ioo >> eventName >> eventTime >> eventVal;
 		eventCount++;
 		newEvent = new Event(eventName, eventTime, eventCount, eventVal);
 
