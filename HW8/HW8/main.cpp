@@ -7,8 +7,11 @@
 #include "Circuit.h"
 #include "Event.h"
 #include "crtdbg.h"
+#include "priorityQueue.h"
 
 using namespace std;
+
+typedef priority_queue <priorityQueue> myPQueue;
 
 int main() {
 
@@ -49,6 +52,10 @@ int main() {
 	int num_line = 0;
 	int in1, in2, out, eventCount = 0;
 	double eventVal;
+
+	priorityQueue pq;
+
+	myPQueue prio;
 
 	
 	while (!inFile.eof()) {
