@@ -1,9 +1,11 @@
 #pragma once
 #include <vector>
+#include "Event.h"
 
 using namespace std;
 class Wire;
 class Gate;
+
 
 class Circuit {
 public:
@@ -12,11 +14,13 @@ public:
 	vector <Wire*> outputs;
 	vector <Wire*> wires;
 	vector <Gate*> gates;
+	vector <Event*> events;
 
 	Circuit(int numline);
 	
 	Wire* getOrCreateWire(int num);
 
-
+	bool gateOutputEquality(Event* event1);
+	int getWireIndexFromName(Wire* wire1, string wireName);
 
 };

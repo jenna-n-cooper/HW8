@@ -116,6 +116,7 @@ int main() {
 		inFile >> ioo >> eventName >> eventTime >> eventVal;
 		eventCount++;
 		newEvent = new Event(eventName, eventTime, eventCount, eventVal);
+		cir.events.push_back(newEvent);
 
 
 	}
