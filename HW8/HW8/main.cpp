@@ -19,7 +19,7 @@ int main() {
 	getline(cin, cirName);
 
 	cirFileName = cirName + ".txt";
-	vecFileName = cirName + "_V.txt";
+	vecFileName = cirName + "_v.txt";
 	
 	ifstream inFile;
 
