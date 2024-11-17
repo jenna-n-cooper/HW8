@@ -21,6 +21,23 @@ Wire* Circuit::getOrCreateWire(int num)
 		Wire* w = new Wire;
 		w->setIndex(num);
 		wires.at(num) = w;
+		inputs.at(num) = w;
 		return wires.at(num);
 	}
+}
+
+bool Circuit::gateOutputEquality(Event* event1)
+{
+	
+	return false;
+}
+
+int Circuit::getWireIndexFromName(Wire* wire1, string wireName)
+{
+	for (int i = 0; i < inputs.size(); i++) {
+		if (inputs.at(i)->getName() == wireName) {
+			return inputs.at(i)->getValue();
+		}
+	}
+	return -5;
 }

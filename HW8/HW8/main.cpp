@@ -6,11 +6,9 @@
 #include "Gate.h"
 #include "Circuit.h"
 #include "Event.h"
-#include "priorityQueue.h"
+#include "crtdbg.h"
 
 using namespace std;
-
-typedef priority_queue<priorityQueue> myPQueue;
 
 int main() {
 
@@ -51,10 +49,6 @@ int main() {
 	int num_line = 0;
 	int in1, in2, out, eventCount = 0;
 	double eventVal;
-
-
-	priorityQueue pq;
-	myPQueue prio;
 
 	
 	while (!inFile.eof()) {
@@ -119,13 +113,14 @@ int main() {
 	getline(inFile, line);
 
 	while (!inFile.eof()) {
-		inFile >> ioo>> eventName >> eventTime >> eventVal;
+		inFile >> ioo >> eventName >> eventTime >> eventVal;
 		eventCount++;
 
 		pq.setKey(eventTime);
 		pq.setSKey(eventCount);
 
 		newEvent = new Event(eventName, eventTime, eventCount, eventVal);
+		cir.events.push_back(newEvent);
 
 		pq.setEvent(newEvent);
 		
