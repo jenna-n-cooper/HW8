@@ -5,6 +5,7 @@
 #include "Wire.h"
 #include "Gate.h"
 #include "Circuit.h"
+#include "Event.h"
 
 using namespace std;
 
@@ -36,15 +37,17 @@ int main() {
 
 	Wire* newWire, *wireIn1, *wireIn2, *wireOut;
 	Gate* newGate;
+	Event* newEvent;
 
 	string line;
 	
 	string ioo;
 	string wn;
-	string sTime;
-	int wnum;
+	string sTime, eventName;
+	int wnum, eventTime;
 	int num_line = 0;
 	int in1, in2, out;
+	double eventVal;
 
 	
 	while (!inFile.eof()) {
@@ -95,6 +98,25 @@ int main() {
 	}
 
 	inFile.close();
+
+	inFile.open(vecFileName);
+
+	if (inFile.fail()) {
+
+		cout << "error opening vector file." << endl;
+		return 1;
+
+	}
+
+	inFile.seekg(fstream::beg);
+
+	getline(inFile, line);
+
+	while (!inFile.eof()) {
+		inFile >> eventName >> eventTime >> eventVal;
+		newEvent = new Event(eventName, eventTime, eventVal);
+
+	}
 
 	return 0;
 }
