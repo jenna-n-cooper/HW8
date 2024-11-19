@@ -24,4 +24,6 @@ public:
 	Wire* getWireFromName(string wireName);
 	vector<Gate*> getGatesFromName(string wireName);
 
+	Event* outputChange(Gate* g);
+
 };

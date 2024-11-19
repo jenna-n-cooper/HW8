@@ -59,3 +59,47 @@ vector<Gate*> Circuit::getGatesFromName(string wireName)
 	}
 	return vector<Gate*>();
 }
+
+Event* Circuit::outputChange(Gate* g)
+{
+	Wire* ocWire;
+	string ocName;
+	int ocTime;
+	
+	// gets the wire* for the output wire
+	ocWire = g->getOutput();
+
+	// gets the name of the output wire
+	ocName = ocWire->getName();
+
+	// gets the time delay 
+	ocTime = g->getDelay();
+
+
+	//create event to change output wire using time
+	Event* newEvent;
+
+	//newEvent = Event(ocName, ocTime, count, );
+	
+	
+	//return Event* 
+	return newEvent;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
