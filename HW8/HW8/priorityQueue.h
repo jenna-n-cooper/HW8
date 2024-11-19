@@ -12,9 +12,8 @@ using namespace std;
 class priorityQueue {
 
 	public:
-		priorityQueue() : key(0), secondaryKey(0) {  }
+		priorityQueue() : key(0), secondaryKey(0), pqEvents(nullptr){  }
 	
-		//change  string to be for event class vector of event 
 		priorityQueue(int ky, int sk, Event* events) : key(ky), secondaryKey(sk), pqEvents(events) { }
 		
 		int    getKey()      const { return key; }

@@ -1,5 +1,6 @@
 #include <string>
 #include <vector>
+#include <queue>
 #include <iostream>
 #include <fstream>
 #include "Wire.h"
@@ -41,7 +42,7 @@ int main() {
 
 	Wire* newWire, *wireIn1, *wireIn2, *wireOut;
 	Gate* newGate;
-	Event* newEvent;
+	Event* newEvent, *e;
 
 	string line;
 	
@@ -135,6 +136,13 @@ int main() {
 
 
 	}
+
+	//we have already created the events and priority queue. Now, we evaluate the gate
+
+	pq = prio.top();
+	e = pq.getEvent();
+
+
 
 	return 0;
 }
