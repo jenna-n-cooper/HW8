@@ -7,3 +7,8 @@ Event::Event(string eventName, int eventTime, int eventCount, double eventVal)
 	val = eventVal;
 	count = eventCount;
 }
+
+int Event::getCount() const
+{
+	return count;
+}

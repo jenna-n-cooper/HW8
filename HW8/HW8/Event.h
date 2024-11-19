@@ -11,4 +11,6 @@ public:
 
 	Event(string eventName, int eventTime, int eventCount, double eventVal);
 
+	int getCount() const;
+
 };
