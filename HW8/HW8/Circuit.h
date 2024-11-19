@@ -20,9 +20,7 @@ public:
 	
 	Wire* getOrCreateWire(int num);
 
-	bool gateOutputEquality(Event* event1);
-	Wire* getWireFromName(string wireName);
-	vector<Gate*> getGatesFromName(string wireName);
+	bool gateOutputEquality(Event* e, Gate* g);
 
 	Event* outputChange(Gate* g);
 

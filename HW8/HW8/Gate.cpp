@@ -41,6 +41,11 @@ Wire* Gate::getOutput() const
 	return out;
 }
 
+string Gate::getType() const
+{
+	return type;
+}
+
 double Gate::negateVal(double val) const
 {
 	return 1 - val;

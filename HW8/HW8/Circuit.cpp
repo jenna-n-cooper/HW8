@@ -27,79 +27,26 @@ Wire* Circuit::getOrCreateWire(int num)
 	}
 }
 
-bool Circuit::gateOutputEquality(Event* event1)
+bool Circuit::gateOutputEquality(Event* e, Gate* g)
 {
-	Wire* origWire = getWireFromName(event1->name);
-	vector<Gate*> g = getGatesFromName(event1->name);
-	for (int i = 0; i < g.size(); i++) {
-		if (g.at(i)->getInput(1) == origWire) {
-
-		}
+	double origVal = g->returnVal(g->getInput(1), g->getInput(2), g->getOutput(), g->getDelay(), g->getType());
+	double newVal;
+	Wire* w = new Wire();
+	w->setValue(e->val);
+	if (w->getValue() == g->getInput(1)->getValue()) {
+		newVal = g->returnVal(g->getInput(1), w, g->getOutput(), g->getDelay(), g->getType());
 	}
-	return false;
-}
-
-Wire* Circuit::getWireFromName(string wireName)
-{
-	for (int i = 0; i < inputs.size(); i++) {
-		if (inputs.at(i)->getName() == wireName) {
-			return inputs.at(i);
-		}
+	else {
+		newVal = g->returnVal(w, g->getInput(2), g->getOutput(), g->getDelay(), g->getType());
 	}
-	return nullptr;
-}
 
-
-vector<Gate*> Circuit::getGatesFromName(string wireName)
-{
-	for (int i = 0; i < inputs.size(); i++) {
-		if (inputs.at(i)->getName() == wireName) {
-			return inputs.at(i)->getDrives();
-		}
+	if (newVal == origVal) {
+		return true;
 	}
-	return vector<Gate*>();
+	else {
+		return false;
+	}
+	
 }
-
-Event* Circuit::outputChange(Gate* g)
-{
-	Wire* ocWire;
-	string ocName;
-	int ocTime;
-	
-	// gets the wire* for the output wire
-	ocWire = g->getOutput();
-
-	// gets the name of the output wire
-	ocName = ocWire->getName();
-
-	// gets the time delay 
-	ocTime = g->getDelay();
-
-
-	//create event to change output wire using time
-	Event* newEvent;
-
-	//newEvent = Event(ocName, ocTime, count, );
-	
-	
-	//return Event* 
-	return newEvent;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
