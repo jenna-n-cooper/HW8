@@ -1,6 +1,7 @@
 #include "Circuit.h"
 #include "Wire.h"
 #include "Gate.h"
+#include "Event.h"
 
 Circuit::Circuit(int numline)
 {
@@ -48,5 +49,44 @@ bool Circuit::gateOutputEquality(Event* e, Gate* g)
 	}
 	
 }
+
+Event* Circuit::outputChange(Event* e, Gate* g)
+{
+	Wire* ocWire;
+	string ocName;
+	int ocTime, ocCount;
+	double newVal; 
+
+	// gets the wire* for the output wire
+	ocWire = g->getOutput();
+
+	// gets the name of the output wire
+	ocName = ocWire->getName();
+
+	// gets the time delay 
+	ocTime = g->getDelay();
+
+	//count of whole system
+	ocCount = e->getCount();
+
+	// gets the new value of the output of the gate
+	ocWire->setValue(e->val);
+	if (ocWire->getValue() == g->getInput(1)->getValue()) {
+		newVal = g->returnVal(g->getInput(1), ocWire, g->getOutput(), g->getDelay(), g->getType());
+	}
+	else {
+		newVal = g->returnVal(ocWire, g->getInput(2), g->getOutput(), g->getDelay(), g->getType());
+	}
+
+	//create event to change output wire using time
+	Event* newEvent;
+
+	newEvent = new Event(ocName, ocTime, ocCount, newVal);
+
+
+	//return Event* 
+	return newEvent;
+}
+
 
 

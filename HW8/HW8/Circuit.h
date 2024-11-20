@@ -22,5 +22,6 @@ public:
 
 	bool gateOutputEquality(Event* e, Gate* g);
 
+	Event* outputChange(Event* e, Gate* g);
 
 };

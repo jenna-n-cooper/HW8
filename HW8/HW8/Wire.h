@@ -20,8 +20,8 @@ public:
 	void setIndex(int cindex);
 	void setValue(double val);
 
+	void setHistory(vector<double> his);
 
-	void setHistory(double his);
 	void setDrives(vector<Gate*> gate);
 
 	double getValue() const;
