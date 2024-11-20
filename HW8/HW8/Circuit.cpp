@@ -105,10 +105,11 @@ Wire* Circuit::getWireFromName(string wireName)
 
 void Circuit::evaluateEvent(priorityQueue* cpq) {
 	//getting our event and wires
-	Event* newEvent; 
+	Event* newEvent = new Event; 
 	priorityQueue* newQueue = new priorityQueue;
 	Wire* w = new Wire;
 	int key;
+	Wire* w = new Wire;
 	Event* e = cpq->getEvent();
 	w = getWireFromName(e->name);
 	//iterating through the drives
