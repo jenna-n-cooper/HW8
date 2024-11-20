@@ -12,7 +12,6 @@
 
 using namespace std;
 
-typedef priority_queue <priorityQueue> myPQueue;
 
 int main() {
 
@@ -40,7 +39,7 @@ int main() {
 
 
 
-	Wire* newWire, *wireIn1, *wireIn2, *wireOut;
+	Wire* newWire, *wireIn1, *wireIn2, *wireOut, *w;
 	Gate* newGate;
 	Event* newEvent, *e;
 
@@ -54,9 +53,7 @@ int main() {
 	int in1, in2, out, eventCount = 0;
 	double eventVal;
 
-	priorityQueue pq;
-
-	myPQueue prio;
+	
 
 	
 	while (!inFile.eof()) {
@@ -124,23 +121,23 @@ int main() {
 		inFile >> ioo >> eventName >> eventTime >> eventVal;
 		eventCount++;
 
-		pq.setKey(eventTime);
-		pq.setSKey(eventCount);
+		cir.pq.setKey(eventTime);
+		cir.pq.setSKey(eventCount);
 
 		newEvent = new Event(eventName, eventTime, eventCount, eventVal);
 		cir.events.push_back(newEvent);
 
-		pq.setEvent(newEvent);
+		cir.pq.setEvent(newEvent);
 		
-		prio.push(pq);
+		cir.prio.push(cir.pq);
 
 
 	}
 
 	//we have already created the events and priority queue. Now, we evaluate the gate
 
-	pq = prio.top();
-	e = pq.getEvent();
+	cir.pq = cir.prio.top();
+	evaluateEvent(cir.pq);
 
 
 

@@ -1,7 +1,11 @@
 #include "Circuit.h"
+#include <vector>
 #include "Wire.h"
 #include "Gate.h"
 #include "Event.h"
+#include "priorityQueue.h"
+
+using namespace std;
 
 Circuit::Circuit(int numline)
 {
@@ -67,7 +71,7 @@ Event* Circuit::outputChange(Event* e, Gate* g)
 	ocTime = g->getDelay();
 
 	//count of whole system
-	ocCount = e->getCount();
+	ocCount = e->getCount() + 1;
 
 	// gets the new value of the output of the gate
 	ocWire->setValue(e->val);
@@ -86,6 +90,41 @@ Event* Circuit::outputChange(Event* e, Gate* g)
 
 	//return Event* 
 	return newEvent;
+}
+
+Wire* Circuit::getWireFromName(string wireName)
+{
+	for (int i = 0; i < inputs.size(); i++) {
+		if (inputs.at(i)->getName() == wireName) {
+			return inputs.at(i);
+		}
+	}
+	return nullptr;
+}
+
+void Circuit::evaluateEvent(priorityQueue* pq) {
+	//getting our event and wires
+	Event* newEvent; 
+	priorityQueue* newQueue = new priorityQueue;
+	int key;
+	Event* e = pq->getEvent();
+	Wire* w = getWireFromName(e->name);
+	//iterating through the drives
+	for (int i = 0; i < w->getDrives().size(); i++) {
+		//if the new output of the gate is different from the old, make an event
+		if (!(gateOutputEquality(e, w->getDrives().at(i)))) {
+			//create a new priorityQueue object
+			newEvent = outputChange(e, w->getDrives().at(i));
+			key = w->getDrives().at(i)->getDelay() + pq->getKey();
+			newQueue->setKey(key);
+			newQueue->setEvent(newEvent);
+			newQueue->setSKey(e->count);
+			prio.push(*newQueue);
+		}
+	}
+	//change wire value
+	w->setValue(e->val);
+
 }
 
 
