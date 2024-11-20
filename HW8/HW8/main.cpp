@@ -135,9 +135,12 @@ int main() {
 	}
 
 	//we have already created the events and priority queue. Now, we evaluate the gate
-
-	cir.pq = cir.prio.top();
-	cir.evaluateEvent(cir.pq);
+	while (cir.prio.size() != 0) {
+		cir.pq = cir.prio.top();
+		cir.evaluateEvent(cir.pq);
+		cir.prio.pop();
+	}
+	
 
 
 
