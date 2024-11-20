@@ -71,6 +71,13 @@ void Wire::setDrives(vector<Gate*> gate)
 
 }
 
+vector<double> Wire::getHistory() const
+{
+	
+	return history;
+
+}
+
 double Wire::getValue() const
 {
 	return value;
