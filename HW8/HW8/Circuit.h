@@ -1,7 +1,7 @@
 #pragma once
 #include <vector>
 #include "Event.h"
-typedef priority_queue <priorityQueue> myPQueue;
+typedef priority_queue <priorityQueue*> myPQueue;
 
 using namespace std;
 class Wire;
@@ -16,7 +16,7 @@ public:
 	vector <Wire*> wires;
 	vector <Gate*> gates;
 	vector <Event*> events;
-	priorityQueue pq;
+	priorityQueue* pq;
 	myPQueue prio;
 
 	Circuit(int numline);
