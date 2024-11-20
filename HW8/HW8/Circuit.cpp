@@ -120,7 +120,7 @@ void Circuit::evaluateEvent(priorityQueue* pq) {
 			newQueue->setKey(key);
 			newQueue->setEvent(newEvent);
 			newQueue->setSKey(e->count);
-			prio.push(*newQueue);
+			prio.push(newQueue);
 		}
 	}
 	//change wire value
@@ -131,7 +131,7 @@ void Circuit::evaluateEvent(priorityQueue* pq) {
 }
 
 void Circuit::printWires()
-{
+{//printing all input and output wires
 	for (int i = 0; i < inputs.size(); i++) {
 		inputs.at(i)->setHistory(inputs.at(i)->getHistory());
 		inputs.at(i)->printHistory();

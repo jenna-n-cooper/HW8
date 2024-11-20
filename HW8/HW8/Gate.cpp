@@ -1,8 +1,5 @@
 #include "Gate.h"
-#include "Wire.h"
-#include <iostream>
-#include <algorithm>//for the min() and max() functions
-#include <fstream>
+
 
 using namespace std;
 
