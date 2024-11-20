@@ -27,6 +27,9 @@ public:
 
 	void setDrives(vector<Gate*> gate);
 
+
+	vector<double> getHistory() const;
+
 	double getValue() const;
 	string getName() const;
 	vector<Gate*> getDrives() const;
