@@ -116,6 +116,7 @@ int main() {
 	inFile.seekg(fstream::beg);
 
 	getline(inFile, line);
+	cir.pq = new priorityQueue;
 
 	while (!inFile.eof()) {
 		inFile >> ioo >> eventName >> eventTime >> eventVal;
