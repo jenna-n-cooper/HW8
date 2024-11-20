@@ -125,6 +125,7 @@ void Circuit::evaluateEvent(priorityQueue* pq) {
 	}
 	//change wire value
 	w->setValue(e->val);
+	w->setVectorForHistory(w->getValue(), pq);
 
 
 }
