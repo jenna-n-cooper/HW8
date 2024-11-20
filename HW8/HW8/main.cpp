@@ -141,7 +141,7 @@ int main() {
 		cir.prio.pop();
 	}
 	
-
+	cir.printWires();
 
 
 	return 0;

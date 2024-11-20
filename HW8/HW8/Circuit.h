@@ -31,4 +31,6 @@ public:
 
 	void evaluateEvent(priorityQueue* pq);
 
+	void printWires();
+
 };

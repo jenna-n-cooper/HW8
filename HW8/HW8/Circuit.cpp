@@ -130,5 +130,18 @@ void Circuit::evaluateEvent(priorityQueue* pq) {
 
 }
 
+void Circuit::printWires()
+{
+	for (int i = 0; i < inputs.size(); i++) {
+		inputs.at(i)->setHistory(inputs.at(i)->getHistory());
+		inputs.at(i)->printHistory();
+	}
+
+	for (int i = 0; i < outputs.size(); i++) {
+		outputs.at(i)->setHistory(outputs.at(i)->getHistory());
+		outputs.at(i)->printHistory();
+	}
+}
+
 
 
