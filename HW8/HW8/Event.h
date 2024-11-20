@@ -10,7 +10,7 @@ public:
 	string name;
 
 	Event(string eventName, int eventTime, int eventCount, double eventVal);
-
+	Event();
 	int getCount() const;
 
 };
