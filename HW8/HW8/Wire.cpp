@@ -1,3 +1,4 @@
+#pragma once
 #include "Wire.h"
 #include <iostream>
 #include <fstream>
