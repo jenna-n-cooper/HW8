@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <vector>
+#include "priorityQueue.h"
 using namespace std;
 
 class Gate;
@@ -11,7 +12,7 @@ private:
 	string name;
 	vector<Gate*> out;
 	int index;
-	vector<double> history;
+	vector <double> history;
 
 public:
 	Wire();
@@ -19,6 +20,8 @@ public:
 	void setName(string cname);
 	void setIndex(int cindex);
 	void setValue(double val);
+
+	void setVectorForHistory(double hisvec, priorityQueue* pq);
 
 	void setHistory(vector<double> his);
 

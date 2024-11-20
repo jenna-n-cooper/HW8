@@ -34,6 +34,15 @@ void Wire::setValue(double val)
 
 }
 
+void Wire::setVectorForHistory(double histVec, priorityQueue* pq)
+{
+	int histTime;
+	histTime = pq->getKey();
+
+	history.at(histTime) = histVec;
+
+}
+
 void Wire::setHistory(vector <double> his)
 {
 	// wait until event class to fix

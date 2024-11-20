@@ -121,13 +121,13 @@ int main() {
 		inFile >> ioo >> eventName >> eventTime >> eventVal;
 		eventCount++;
 
-		cir.pq->setKey(eventTime);
-		cir.pq->setSKey(eventCount);
+		cir.pq.setKey(eventTime);
+		cir.pq.setSKey(eventCount);
 
 		newEvent = new Event(eventName, eventTime, eventCount, eventVal);
 		cir.events.push_back(newEvent);
 
-		cir.pq->setEvent(newEvent);
+		cir.pq.setEvent(newEvent);
 		
 		cir.prio.push(cir.pq);
 
@@ -137,7 +137,7 @@ int main() {
 	//we have already created the events and priority queue. Now, we evaluate the gate
 
 	cir.pq = cir.prio.top();
-	cir.evaluateEvent(cir.pq);
+	cir.evaluateEvent();
 
 
 
