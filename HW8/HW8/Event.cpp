@@ -1,3 +1,4 @@
+#pragma once
 #include "Event.h"
 
 Event::Event(string eventName, int eventTime, int eventCount, double eventVal)

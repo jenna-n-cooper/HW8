@@ -1,3 +1,4 @@
+#pragma once
 #include "Circuit.h"
 #include <vector>
 #include "Wire.h"
@@ -124,6 +125,7 @@ void Circuit::evaluateEvent(priorityQueue* pq) {
 	}
 	//change wire value
 	w->setValue(e->val);
+
 
 }
 
