@@ -69,6 +69,8 @@ void Wire::setHistory(vector <double> his)
 void Wire::setDrives(vector<Gate*> gate)
 {
 
+
+
 }
 
 vector<double> Wire::getHistory() const

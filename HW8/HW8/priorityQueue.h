@@ -12,7 +12,7 @@ using namespace std;
 class priorityQueue {
 
 	public:
-		priorityQueue() : key(0), secondaryKey(0), pqEvents(nullptr){  }
+		priorityQueue() : key(0), secondaryKey(0), pqEvents(){  }
 	
 		priorityQueue(int ky, int sk, Event* events) : key(ky), secondaryKey(sk), pqEvents(events) { }
 		
