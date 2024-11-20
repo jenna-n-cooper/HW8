@@ -107,6 +107,7 @@ void Circuit::evaluateEvent(priorityQueue* cpq) {
 	//getting our event and wires
 	Event* newEvent = new Event; 
 	priorityQueue* newQueue = new priorityQueue;
+	Wire* w;
 	int key;
 	Event* e = cpq->getEvent();
 	w = getWireFromName(e->name);
