@@ -109,7 +109,6 @@ void Circuit::evaluateEvent(priorityQueue* cpq) {
 	priorityQueue* newQueue = new priorityQueue;
 	Wire* w = new Wire;
 	int key;
-	Wire* w = new Wire;
 	Event* e = cpq->getEvent();
 	w = getWireFromName(e->name);
 	//iterating through the drives
@@ -135,13 +134,17 @@ void Circuit::evaluateEvent(priorityQueue* cpq) {
 void Circuit::printWires()
 {//printing all input and output wires
 	for (int i = 0; i < inputs.size(); i++) {
-		inputs.at(i)->setHistory(inputs.at(i)->getHistory());
-		inputs.at(i)->printHistory();
+		if (inputs.at(i) != nullptr) {
+			inputs.at(i)->setHistory(inputs.at(i)->getHistory());
+			inputs.at(i)->printHistory();
+		}
 	}
 
 	for (int i = 0; i < outputs.size(); i++) {
-		outputs.at(i)->setHistory(outputs.at(i)->getHistory());
-		outputs.at(i)->printHistory();
+		if (outputs.at(i) != nullptr) {
+			outputs.at(i)->setHistory(outputs.at(i)->getHistory());
+			outputs.at(i)->printHistory();
+		}
 	}
 }
 
