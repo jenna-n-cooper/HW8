@@ -31,7 +31,7 @@ public:
 
 	Wire* getWireFromName(string wireName);
 
-	void evaluateEvent(priorityQueue* pq);
+	void evaluateEvent(priorityQueue* cpq);
 
 	void printWires();
 

@@ -103,12 +103,12 @@ Wire* Circuit::getWireFromName(string wireName)
 	return nullptr;
 }
 
-void Circuit::evaluateEvent(priorityQueue* pq) {
+void Circuit::evaluateEvent(priorityQueue* cpq) {
 	//getting our event and wires
 	Event* newEvent; 
 	priorityQueue* newQueue = new priorityQueue;
 	int key;
-	Event* e = pq->getEvent();
+	Event* e = cpq->getEvent();
 	Wire* w = getWireFromName(e->name);
 	//iterating through the drives
 	for (int i = 0; i < w->getDrives().size(); i++) {
@@ -116,7 +116,7 @@ void Circuit::evaluateEvent(priorityQueue* pq) {
 		if (!(gateOutputEquality(e, w->getDrives().at(i)))) {
 			//create a new priorityQueue object
 			newEvent = outputChange(e, w->getDrives().at(i));
-			key = w->getDrives().at(i)->getDelay() + pq->getKey();
+			key = w->getDrives().at(i)->getDelay() + cpq->getKey();
 			newQueue->setKey(key);
 			newQueue->setEvent(newEvent);
 			newQueue->setSKey(e->count);
@@ -125,7 +125,7 @@ void Circuit::evaluateEvent(priorityQueue* pq) {
 	}
 	//change wire value
 	w->setValue(e->val);
-	w->setVectorForHistory(w->getValue(), pq);
+	w->setVectorForHistory(w->getValue(), cpq);
 
 
 }
