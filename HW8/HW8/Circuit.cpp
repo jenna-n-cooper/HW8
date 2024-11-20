@@ -95,7 +95,7 @@ Event* Circuit::outputChange(Event* e, Gate* g)
 
 Wire* Circuit::getWireFromName(string wireName)
 {
-	for (int i = 0; i < inputs.size(); i++) {
+	for (int i = 1; i < inputs.size(); i++) {
 		if (inputs.at(i)->getName() == wireName) {
 			return inputs.at(i);
 		}
@@ -107,9 +107,10 @@ void Circuit::evaluateEvent(priorityQueue* cpq) {
 	//getting our event and wires
 	Event* newEvent; 
 	priorityQueue* newQueue = new priorityQueue;
+	Wire* w = new Wire;
 	int key;
 	Event* e = cpq->getEvent();
-	Wire* w = getWireFromName(e->name);
+	w = getWireFromName(e->name);
 	//iterating through the drives
 	for (int i = 0; i < w->getDrives().size(); i++) {
 		//if the new output of the gate is different from the old, make an event
