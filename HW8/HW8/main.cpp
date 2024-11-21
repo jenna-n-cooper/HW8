@@ -116,9 +116,10 @@ int main() {
 	inFile.seekg(fstream::beg);
 
 	getline(inFile, line);
-	cir.pq = new priorityQueue;
+	
 
 	while (!inFile.eof()) {
+		cir.pq = new priorityQueue;
 		inFile >> ioo >> eventName >> eventTime >> eventVal;
 		eventCount++;
 
@@ -130,14 +131,14 @@ int main() {
 
 		cir.pq->setEvent(newEvent);
 		
-		cir.prio.push(cir.pq);
-
+		cir.prio.push(*cir.pq);
+		
 
 	}
 
 	//we have already created the events and priority queue. Now, we evaluate the gate
 	while (cir.prio.size() != 0) {
-		cir.pq = cir.prio.top();
+		*cir.pq = cir.prio.top();
 		cir.evaluateEvent(cir.pq);
 		cir.prio.pop();
 	}

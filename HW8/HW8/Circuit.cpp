@@ -121,7 +121,7 @@ void Circuit::evaluateEvent(priorityQueue* cpq) {
 			newQueue->setKey(key);
 			newQueue->setEvent(newEvent);
 			newQueue->setSKey(e->count);
-			prio.push(newQueue);
+			prio.push(*newQueue);
 		}
 	}
 	//change wire value

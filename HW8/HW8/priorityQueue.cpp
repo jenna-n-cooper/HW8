@@ -15,4 +15,3 @@ bool operator<(const priorityQueue& p1, const priorityQueue& p2)
 
 	return p1.key > p2.key;
 }
-

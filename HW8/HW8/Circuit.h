@@ -3,7 +3,7 @@
 #include <queue>
 #include "Event.h"
 #include "priorityQueue.h"
-typedef priority_queue <priorityQueue*> myPQueue;
+typedef priority_queue <priorityQueue> myPQueue;
 
 using namespace std;
 class Wire;
