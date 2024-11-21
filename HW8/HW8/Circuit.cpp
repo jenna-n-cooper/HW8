@@ -15,7 +15,6 @@ Circuit::Circuit(int numline)
 		inputs.push_back(nullptr);
 		outputs.push_back(nullptr);
 		wires.push_back(nullptr);
-		gates.push_back(nullptr);
 	}
 }
 
@@ -146,6 +145,18 @@ void Circuit::printWires()
 			outputs.at(i)->printHistory();
 		}
 	}
+}
+
+void Circuit::setAllDrivesForWires()
+{
+	for (int j = 0; j < inputs.size(); j++) {
+		for (int i = 0; i < gates.size(); i++) {
+			if (inputs.at(j) == gates.at(i)->getInput(1) || inputs.at(j) == gates.at(i)->getInput(2)) {
+				inputs.at(j)->setDrives(gates.at(i));
+			}
+		}
+	}
+	
 }
 
 

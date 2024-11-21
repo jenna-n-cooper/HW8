@@ -35,4 +35,6 @@ public:
 
 	void printWires();
 
+	void setAllDrivesForWires();
+
 };

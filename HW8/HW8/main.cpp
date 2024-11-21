@@ -97,10 +97,12 @@ int main() {
 			wireIn1 = cir.getOrCreateWire(in1);			
 			wireOut = cir.getOrCreateWire(out);
 			newGate = new Gate(wireIn1, wireIn2, wireOut, stoi(sTime), ioo);
+			cir.gates.push_back(newGate);
 		}
 		
 		
 	}
+	cir.setAllDrivesForWires();
 
 	inFile.close();
 
