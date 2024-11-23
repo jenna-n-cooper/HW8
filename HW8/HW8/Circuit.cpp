@@ -1,6 +1,7 @@
 #pragma once
 #include "Circuit.h"
 #include <vector>
+#include <queue>
 #include "Wire.h"
 #include "Gate.h"
 #include "Event.h"
@@ -65,10 +66,9 @@ Event* Circuit::outputChange(Event* e, Gate* g)
 	double newVal; 
 
 	// gets the wire* for the output wire
-	ocWire = g->getOutput();
 
 	// gets the name of the output wire
-	ocName = ocWire->getName();
+	ocName = g->getOutput()->getName();
 
 	// gets the time delay. By time delay we mean the time that the event will take place
 	// which is the time at which the current event took place + the time delay of the gate
@@ -117,7 +117,8 @@ void Circuit::evaluateEvent(priorityQueue* cpq) {
 		if (!(gateOutputEquality(e, w->getDrives().at(i)))) {
 			//create a new priorityQueue object
 			newEvent = outputChange(e, w->getDrives().at(i));
-			key = w->getDrives().at(i)->getDelay() + cpq->getKey();
+			events.push_back(newEvent);
+			key = newEvent->time;
 			newQueue->setKey(key);
 			newQueue->setEvent(newEvent);
 			newQueue->setSKey(numkey);
