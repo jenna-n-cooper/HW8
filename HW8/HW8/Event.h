@@ -4,13 +4,15 @@
 
 using namespace std;
 
+extern int numkey;
+
 class Event {
 public:
 	double val;
-	int time, count;
+	int time;
 	string name;
 
-	Event(string eventName, int eventTime, int eventCount, double eventVal);
+	Event(string eventName, int eventTime, double eventVal);
 	Event();
 	int getCount() const;
 

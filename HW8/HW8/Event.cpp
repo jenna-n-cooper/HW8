@@ -1,12 +1,13 @@
 #pragma once
 #include "Event.h"
+int numkey = 0;
 
-Event::Event(string eventName, int eventTime, int eventCount, double eventVal)
+Event::Event(string eventName, int eventTime, double eventVal)
 {
 	name = eventName;
 	time = eventTime;
 	val = eventVal;
-	count = eventCount;
+	numkey++;
 }
 
 Event::Event()
@@ -14,10 +15,10 @@ Event::Event()
 	name = "";
 	time = -4;
 	val = -1;
-	count = -7;
+	numkey = -7;
 }
 
 int Event::getCount() const
 {
-	return count;
+	return numkey;
 }

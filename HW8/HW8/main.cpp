@@ -10,6 +10,8 @@
 #include "crtdbg.h"
 #include "priorityQueue.h"
 
+static int count = 0;
+
 using namespace std;
 
 
@@ -50,7 +52,7 @@ int main() {
 	string sTime, eventName;
 	int wnum, eventTime;
 	int num_line = 0;
-	int in1, in2, out, eventCount = 0;
+	int in1, in2, out;
 	double eventVal;
 
 	
@@ -123,12 +125,11 @@ int main() {
 	while (!inFile.eof()) {
 		cir.pq = new priorityQueue;
 		inFile >> ioo >> eventName >> eventTime >> eventVal;
-		eventCount++;
 
 		cir.pq->setKey(eventTime);
-		cir.pq->setSKey(eventCount);
+		cir.pq->setSKey(numkey);
 
-		newEvent = new Event(eventName, eventTime, eventCount, eventVal);
+		newEvent = new Event(eventName, eventTime, eventVal);
 		cir.events.push_back(newEvent);
 
 		cir.pq->setEvent(newEvent);

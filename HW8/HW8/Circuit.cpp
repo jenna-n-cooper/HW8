@@ -6,6 +6,8 @@
 #include "Event.h"
 #include "priorityQueue.h"
 
+static int count = 0;
+
 using namespace std;
 
 Circuit::Circuit(int numline)
@@ -16,6 +18,7 @@ Circuit::Circuit(int numline)
 		outputs.push_back(nullptr);
 		wires.push_back(nullptr);
 	}
+	pq = nullptr;
 }
 
 Wire* Circuit::getOrCreateWire(int num)
@@ -56,7 +59,7 @@ bool Circuit::gateOutputEquality(Event* e, Gate* g)
 
 Event* Circuit::outputChange(Event* e, Gate* g)
 {
-	Wire* ocWire;
+	Wire* ocWire = new Wire;
 	string ocName;
 	int ocTime, ocCount;
 	double newVal; 
@@ -67,14 +70,12 @@ Event* Circuit::outputChange(Event* e, Gate* g)
 	// gets the name of the output wire
 	ocName = ocWire->getName();
 
-	// gets the time delay 
-	ocTime = g->getDelay();
+	// gets the time delay. By time delay we mean the time that the event will take place
+	// which is the time at which the current event took place + the time delay of the gate
+	ocTime = e->time + g->getDelay();
 
-	//count of whole system
-	ocCount = e->getCount() + 1;
-
-	// gets the new value of the output of the gate
 	ocWire->setValue(e->val);
+	// gets the new value of the output of the gate
 	if (ocWire->getValue() == g->getInput(1)->getValue()) {
 		newVal = g->returnVal(g->getInput(1), ocWire, g->getOutput(), g->getDelay(), g->getType());
 	}
@@ -85,7 +86,7 @@ Event* Circuit::outputChange(Event* e, Gate* g)
 	//create event to change output wire using time
 	Event* newEvent;
 
-	newEvent = new Event(ocName, ocTime, ocCount, newVal);
+	newEvent = new Event(ocName, ocTime, newVal);
 
 
 	//return Event* 
@@ -119,7 +120,7 @@ void Circuit::evaluateEvent(priorityQueue* cpq) {
 			key = w->getDrives().at(i)->getDelay() + cpq->getKey();
 			newQueue->setKey(key);
 			newQueue->setEvent(newEvent);
-			newQueue->setSKey(e->count);
+			newQueue->setSKey(numkey);
 			prio.push(*newQueue);
 		}
 	}
