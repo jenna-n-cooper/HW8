@@ -25,7 +25,6 @@ public:
 	Event* getEvent() const { return pqEvents; }
 	void   setEvent(Event* events) { pqEvents = events; }
 
-	//string getString()    const { return s; }
 	friend bool operator <(const priorityQueue& p1, const priorityQueue& p2);
 
 private:
@@ -34,6 +33,6 @@ private:
 
 	Event* pqEvents;
 
-	// make for event class
+
 
 };

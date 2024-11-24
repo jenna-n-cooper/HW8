@@ -15,7 +15,7 @@ Event::Event()
 	name = "";
 	time = -4;
 	val = -1;
-	numkey = -7;
+	numkey++;
 }
 
 int Event::getCount() const
