@@ -95,10 +95,23 @@ Event* Circuit::outputChange(Event* e, Gate* g)
 
 Wire* Circuit::getWireFromName(string wireName)
 {
+	
+	//problem with differentiating between input and output
+	//the are fewer items in the list than values when checking 
+	//because it doesn't understand that there are
+	
 	for (int i = 1; i < inputs.size(); i++) {
-		if (inputs.at(i)->getName() == wireName) {
+		if (inputs.at(i) != nullptr && inputs.at(i)->getName() == wireName) {
 			return inputs.at(i);
 		}
+		
+	}
+
+	for (int j = 1; j < outputs.size(); j++) {
+		if (outputs.at(j) != nullptr && outputs.at(j)->getName() == wireName) {
+			return outputs.at(j);
+		}
+
 	}
 	return nullptr;
 }
