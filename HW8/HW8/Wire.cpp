@@ -10,7 +10,7 @@ Wire::Wire()
 	name = "";
 	index = -1;
 	out = {};
-	history.resize(200);
+	history.resize(61);
 
 }
 
