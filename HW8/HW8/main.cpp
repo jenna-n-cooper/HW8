@@ -145,9 +145,10 @@ int main() {
 		cir.evaluateEvent(cir.pq);
 		cir.prio.pop();
 	}
-	
+	Wire printt;
+
 	cir.printWires();
-
-
+	printt.printTime();
+	
 	return 0;
 }

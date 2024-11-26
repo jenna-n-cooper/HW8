@@ -35,6 +35,7 @@ public:
 	int getIndex() const;
 	
 	void printHistory() const;
+	void printTime() const;
 
 
 

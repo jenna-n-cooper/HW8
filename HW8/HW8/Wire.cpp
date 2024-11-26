@@ -122,4 +122,21 @@ void Wire::printHistory() const
 		}
 	}
 	cout << endl;
+	
+}
+
+void Wire::printTime() const
+{
+	cout << "T:";
+	for (int i = 0; i < history.size(); i = i + 5) {
+
+		if (i < 6) {
+			cout << i << "    ";
+		}
+		if (i > 6) {
+			cout << i << "   ";
+		}
+		
+	}
+
 }
