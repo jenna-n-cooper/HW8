@@ -11,6 +11,11 @@ Wire::Wire()
 	index = -1;
 	out = {};
 	history.resize(61);
+	for (int i = 0; i < history.size(); i++) {
+
+		history.at(i) = 0.5;
+
+	}
 
 }
 
@@ -58,15 +63,16 @@ void Wire::setHistory(vector <double> his)
 
 		double somet = history.at(i);
 
-		if (history.at(i) != 1 || history.at(i) != 0 || history.at(i) != 0.5) {
+		if (somet == 0.5) {
 			// if nothing, places the value of previous in spot
-			his.at(i) = curval;
+			history.at(i) = curval;
 		}
 		else {
 			// if something is index there, changes that to the new value
 			curval = history.at(i);
 		}
 	}
+
 }
 
 void Wire::setDrives(Gate* gate)
@@ -109,10 +115,10 @@ void Wire::printHistory() const
 			cout << "X";
 		}
 		else if (history.at(i) == 0) {
-			cout << "0";
+			cout << "_";
 		}
 		else {
-			cout << "1";
+			cout << "-";
 		}
 	}
 	cout << endl;
