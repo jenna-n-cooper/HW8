@@ -109,7 +109,7 @@ int Wire::getIndex() const
 
 void Wire::printHistory() const
 {
-	cout << name << " ";
+	cout << endl << " " << name << " " << "|" << " ";
 	for (int i = 0; i < history.size(); i++) {
 		if (history.at(i) == 0.5) {
 			cout << "X";
@@ -121,13 +121,13 @@ void Wire::printHistory() const
 			cout << "-";
 		}
 	}
-	cout << endl;
+	cout << endl << "   |" ;
 	
 }
 
 void Wire::printTime() const
 {
-	cout << endl << "T:";
+	cout << "_______________________________________________________________" << endl << " T:  " << "";
 	for (int i = 0; i < history.size(); i = i + 5) {
 
 		if (i < 6) {

@@ -9,6 +9,7 @@
 #include "Event.h"
 #include "crtdbg.h"
 #include "priorityQueue.h"
+#include <stdexcept>
 
 static int count = 0;
 
@@ -16,7 +17,7 @@ using namespace std;
 
 
 int main() {
-
+	
 	string cirFileName;
 	string vecFileName;
 	string cirName;
@@ -29,17 +30,44 @@ int main() {
 	
 	ifstream inFile;
 
+	try {
 
-	inFile.open(cirFileName);
+		inFile.open(cirFileName);
 
-	if (inFile.fail()) {
+		if (inFile.fail()) {
 
-		cout << "error opening circuit file." << endl;
-		return 1;
+			throw runtime_error("");
+			
+
+		}
+	}
+	catch (runtime_error& excpt) {
+
+		cout << "Error opening circuit file." << endl;
+		
+		while (inFile.fail()) {
+
+			cout << "Type in the circuit files name again. Enter 'end' to quit. ";
+			getline(cin, cirName);
+
+			if (cirName == "end") {
+
+				cout << "exited simulation." << endl;
+				return 0;
+
+			}
+			else {
+				
+				cirFileName = cirName + ".txt";
+				vecFileName = cirName + "_v.txt";
+
+				inFile.open(cirFileName);
+
+			}
+
+		}
 
 	}
-
-
 
 	Wire* newWire, *wireIn1, *wireIn2, *wireOut, *w;
 	Gate* newGate;
@@ -147,6 +175,7 @@ int main() {
 	}
 	Wire printt;
 
+	cout << endl << "Simulating " << cirFileName << ".";
 	cir.printWires();
 	printt.printTime();
 	
