@@ -147,8 +147,9 @@ void Circuit::evaluateEvent(priorityQueue* cpq) {
 
 void Circuit::printWires()
 {//printing all input and output wires
+	cout << endl;
 	for (int i = 0; i < inputs.size(); i++) {
-		if (inputs.at(i) != nullptr) {
+		if (inputs.at(i) != nullptr && inputs.at(i)->getName() != "") {
 			inputs.at(i)->setHistory(inputs.at(i)->getHistory());
 			inputs.at(i)->printHistory();
 		}

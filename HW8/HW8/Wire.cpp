@@ -115,10 +115,10 @@ void Wire::printHistory() const
 			cout << "X";
 		}
 		else if (history.at(i) == 0) {
-			cout << "_";
+			cout << "0";
 		}
 		else {
-			cout << "-";
+			cout << "1";
 		}
 	}
 	cout << endl;
@@ -127,7 +127,7 @@ void Wire::printHistory() const
 
 void Wire::printTime() const
 {
-	cout << "T:";
+	cout << endl << "T:";
 	for (int i = 0; i < history.size(); i = i + 5) {
 
 		if (i < 6) {
@@ -138,5 +138,7 @@ void Wire::printTime() const
 		}
 		
 	}
+
+	cout << endl << endl;
 
 }
