@@ -115,10 +115,10 @@ void Wire::printHistory() const
 			cout << "X";
 		}
 		else if (history.at(i) == 0) {
-			cout << "0";
+			cout << "_";
 		}
 		else {
-			cout << "1";
+			cout << "-";
 		}
 	}
 	cout << endl;
