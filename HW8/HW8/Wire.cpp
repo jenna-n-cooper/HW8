@@ -10,7 +10,12 @@ Wire::Wire()
 	name = "";
 	index = -1;
 	out = {};
-	history = {};
+	history.resize(61);
+	for (int i = 0; i < history.size(); i++) {
+
+		history.at(i) = 0.5;
+
+	}
 
 }
 
@@ -37,21 +42,10 @@ void Wire::setValue(double val)
 
 void Wire::setVectorForHistory(double histVec, priorityQueue* pq)
 {
-	int histTime = pq->getKey();
-	double val = this->getValue();
-	if (history.size() != 0) {
-		double back = history.back();
-		for (int i = 0; i < histTime - (history.size() - 2); i++) {
-			history.push_back(back);
-		}
-		history.push_back(val);
-	}
-	else {
-		for (int i = 0; i < histTime - (history.size() - 1); i++) {
-			history.push_back(val);
-		}
-	}
-	
+	int histTime;
+	histTime = pq->getKey();
+
+	history.at(histTime) = histVec;
 
 }
 
@@ -61,20 +55,24 @@ void Wire::setHistory(vector <double> his)
 	//history.push_back(his);
 
 	// takes in vector with values index at specific times
-	double curval = his.at(0);
+	double curval = history.at(0);
 
-	// goes through the whol vector
-	for (int i = 1; i < his.size(); ++i) {
+	// goes through the whole vector
+	for (int i = 1; i < history.size(); ++i) {
 		// checks to see if the vector has something indexed
-		if (his.at(i) != 1 || his.at(i) != 0 || his.at(i) != 0.5) {
+
+		double somet = history.at(i);
+
+		if (somet == 0.5) {
 			// if nothing, places the value of previous in spot
-			his.at(i) = curval;
+			history.at(i) = curval;
 		}
 		else {
 			// if something is index there, changes that to the new value
-			curval = his.at(i);
+			curval = history.at(i);
 		}
 	}
+
 }
 
 void Wire::setDrives(Gate* gate)
@@ -111,17 +109,36 @@ int Wire::getIndex() const
 
 void Wire::printHistory() const
 {
-	cout << name << " ";
+	cout << endl << " " << name << " " << "|" << " ";
 	for (int i = 0; i < history.size(); i++) {
 		if (history.at(i) == 0.5) {
 			cout << "X";
 		}
 		else if (history.at(i) == 0) {
-			cout << "0";
+			cout << "_";
 		}
 		else {
-			cout << "1";
+			cout << "-";
 		}
 	}
-	cout << endl;
+	cout << endl << "   |" ;
+	
+}
+
+void Wire::printTime() const
+{
+	cout << "_______________________________________________________________" << endl << " T:  " << "";
+	for (int i = 0; i < history.size(); i = i + 5) {
+
+		if (i < 6) {
+			cout << i << "    ";
+		}
+		if (i > 6) {
+			cout << i << "   ";
+		}
+		
+	}
+
+	cout << endl << endl;
+
 }
