@@ -10,7 +10,7 @@ Wire::Wire()
 	name = "";
 	index = -1;
 	out = {};
-	history.resize(61);
+	history = {};
 
 }
 
@@ -37,10 +37,21 @@ void Wire::setValue(double val)
 
 void Wire::setVectorForHistory(double histVec, priorityQueue* pq)
 {
-	int histTime;
-	histTime = pq->getKey();
-
-	history.at(histTime) = histVec;
+	int histTime = pq->getKey();
+	double val = this->getValue();
+	if (history.size() != 0) {
+		double back = history.back();
+		for (int i = 0; i < histTime - (history.size() - 2); i++) {
+			history.push_back(back);
+		}
+		history.push_back(val);
+	}
+	else {
+		for (int i = 0; i < histTime - (history.size() - 1); i++) {
+			history.push_back(val);
+		}
+	}
+	
 
 }
 
