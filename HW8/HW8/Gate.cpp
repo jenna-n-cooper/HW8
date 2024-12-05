@@ -66,7 +66,18 @@ double Gate::returnVal(Wire* input1, Wire* input2, Wire* output, int d, string t
 		return max(input1->getValue(), input2->getValue());
 	}
 	else if (t == "NOR"){
-		return negateVal(max(input1->getValue(), input2->getValue()));
+
+		if (input1->getValue() == 0.5 || input2->getValue() == 0.5) {
+			if (input1->getValue() == 1.0 || input2->getValue() == 1.0) {
+				return 0;
+			}
+			else {
+				return 0.5;
+			}
+		}
+		else {
+			return negateVal(max(input1->getValue(), input2->getValue()));
+		}
 	}
 	else if (t == "XOR") {//not sure if this gate logic is correct
 		if (input1->getValue() == input2->getValue()) {
