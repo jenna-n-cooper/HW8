@@ -25,6 +25,12 @@ public:
 
 	void setHistory(vector<double> his);
 
+	void pushBackHistVals(int size);
+
+	void setHistorySize(int size);
+
+	int getHistorySize() const;
+
 	void setDrives(Gate* gate);
 
 	vector<double> getHistory() const;

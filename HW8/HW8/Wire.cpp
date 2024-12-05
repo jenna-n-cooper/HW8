@@ -10,12 +10,8 @@ Wire::Wire()
 	name = "";
 	index = 0;
 	out = {};
-	history.resize(61);
-	for (int i = 0; i < history.size(); i++) {
 
-		history.at(i) = -0.5;
-
-	}
+	
 
 }
 
@@ -47,6 +43,16 @@ void Wire::setVectorForHistory(double histVec, priorityQueue* pq)
 	if (histTime < history.size()) {
 		history.at(histTime) = histVec;
 	}
+	else if (histTime == history.size()) {
+		history.push_back(histVec);
+	}
+	else {
+		for (int i = history.size(); i < histTime; i++) {
+			history.push_back(-0.5);
+		}
+		history.push_back(histVec);
+
+	}
 }
 
 void Wire::setHistory(vector <double> his)
@@ -75,6 +81,24 @@ void Wire::setHistory(vector <double> his)
 		}
 	}
 	
+}
+
+void Wire::pushBackHistVals(int size)
+{
+	double endVal = history.at(history.size() - 1);
+	for (int i = history.size(); i < size; i++) {
+		history.push_back(endVal);
+	}
+}
+
+void Wire::setHistorySize(int size)
+{
+	history.resize(size);
+}
+
+int Wire::getHistorySize() const
+{
+	return history.size();
 }
 
 void Wire::setDrives(Gate* gate)
@@ -130,7 +154,11 @@ void Wire::printHistory() const
 void Wire::printTime() const
 {
 	//prints the bar above the time indices
-	cout << "_______________________________________________________________" << endl << " T:  " << "";
+	//cout << "_______________________________________________________________" << endl << " T:  " << "";
+	for (int i = 0; i < history.size() + 1; i++) {
+		cout << "_";
+	}
+	cout << endl << " T:  " << "";
 	for (int i = 0; i < history.size(); i = i + 5) {
 		//prints the time indices
 		if (i < 6) {

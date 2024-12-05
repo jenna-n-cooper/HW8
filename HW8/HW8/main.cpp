@@ -222,14 +222,24 @@ int main() {
 			cir.prio.pop();
 		}
 		
-		Wire printt;
+		Wire print;
+
 
 		cout << endl << "Simulating " << cirFileName << ".";
 		
 		// prints the history of the wires
 		cir.printWires();
 		// prints the time 
-		printt.printTime();
+		int maxHistSize = 0;
+		for (int i = 0; i < cir.wires.size(); i++) {
+			if (cir.wires.at(i) != nullptr && cir.wires.at(i)->getName() != "") {
+				if (cir.wires.at(i)->getHistorySize() > maxHistSize) {
+					maxHistSize = cir.wires.at(i)->getHistorySize();
+				}
+			}
+		}
+		print.setHistorySize(maxHistSize);
+		print.printTime();
 
 		return 0;
 	}

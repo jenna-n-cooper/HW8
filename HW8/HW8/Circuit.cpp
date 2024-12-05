@@ -170,8 +170,26 @@ void Circuit::printWires()
 
 	cout << "Wire traces: " << endl;
 	
+	/*for (int i = 0; i < wires.size(); i++) {
+		if (wires.at(i) != nullptr && wires.at(i)->getName() != "") {
+			wires.at(i)->setHistory(wires.at(i)->getHistory());
+			wires.at(i)->printHistory();
+		}
+	}*/
+	int maxHistSize = 0;
 	for (int i = 0; i < wires.size(); i++) {
 		if (wires.at(i) != nullptr && wires.at(i)->getName() != "") {
+			wires.at(i)->setHistory(wires.at(i)->getHistory());
+			//getting maxHistSize so we can make all the hist vectors the same size
+			if (wires.at(i)->getHistorySize() > maxHistSize) {
+				maxHistSize = wires.at(i)->getHistorySize();
+			}
+		}
+	}
+
+	for (int i = 0; i < wires.size(); i++) {
+		if (wires.at(i) != nullptr && wires.at(i)->getName() != "") {
+			wires.at(i)->pushBackHistVals(maxHistSize);
 			wires.at(i)->setHistory(wires.at(i)->getHistory());
 			wires.at(i)->printHistory();
 		}
