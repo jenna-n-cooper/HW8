@@ -8,7 +8,7 @@ Wire::Wire()
 {
 	value = 0.5;
 	name = "";
-	index = -1;
+	index = 0;
 	out = {};
 	history.resize(61);
 	for (int i = 0; i < history.size(); i++) {
