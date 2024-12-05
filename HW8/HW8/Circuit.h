@@ -27,6 +27,10 @@ public:
 
 	bool gateOutputEquality(Event* e, Gate* g);
 
+	bool areInputWiresInInputVector(Wire* w);
+
+	void addAllWiresToInputVector(Gate* g);
+
 	Event* outputChange(Event* e, Gate* g);
 
 	Wire* getWireFromName(string wireName);

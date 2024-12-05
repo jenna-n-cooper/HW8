@@ -128,10 +128,12 @@ int main() {
 			wireOut = cir.getOrCreateWire(out);
 			newGate = new Gate(wireIn1, wireIn2, wireOut, stoi(sTime), ioo);
 			cir.gates.push_back(newGate);
+			cir.addAllWiresToInputVector(newGate);
 		}
 		
 		
 	}
+
 	cir.setAllDrivesForWires();
 
 	inFile.close();
@@ -170,6 +172,9 @@ int main() {
 	//we have already created the events and priority queue. Now, we evaluate the gate
 	while (cir.prio.size() != 0) {
 		*cir.pq = cir.prio.top();
+		if (cir.pq->getKey() > 60) {
+			break;
+		}
 		cir.evaluateEvent(cir.pq);
 		cir.prio.pop();
 	}

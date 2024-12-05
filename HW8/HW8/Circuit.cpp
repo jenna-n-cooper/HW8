@@ -58,6 +58,26 @@ bool Circuit::gateOutputEquality(Event* e, Gate* g)
 	
 }
 
+bool Circuit::areInputWiresInInputVector(Wire* w)
+{
+	for (int i = 0; i < inputs.size(); i++) {
+		if (inputs.at(i) == w) {
+			return true;
+		}
+	}
+	return false;
+}
+
+void Circuit::addAllWiresToInputVector(Gate* g)
+{
+	if (!(areInputWiresInInputVector(g->getInput(1)))) {
+		inputs.at(g->getInput(1)->getIndex()) = g->getInput(1);
+	}
+	if (!(areInputWiresInInputVector(g->getInput(2)))) {
+		inputs.at(g->getInput(2)->getIndex()) = g->getInput(2);
+	}
+}
+
 Event* Circuit::outputChange(Event* e, Gate* g)
 {
 	Wire* ocWire = new Wire;
@@ -151,17 +171,11 @@ void Circuit::printWires()
 	cout << endl << endl << endl;
 
 	cout << "Wire traces: " << endl;
-	for (int i = 0; i < inputs.size(); i++) {
-		if (inputs.at(i) != nullptr && inputs.at(i)->getName() != "") {
-			inputs.at(i)->setHistory(inputs.at(i)->getHistory());
-			inputs.at(i)->printHistory();
-		}
-	}
-
-	for (int i = 0; i < outputs.size(); i++) {
-		if (outputs.at(i) != nullptr) {
-			outputs.at(i)->setHistory(outputs.at(i)->getHistory());
-			outputs.at(i)->printHistory();
+	
+	for (int i = 0; i < wires.size(); i++) {
+		if (wires.at(i) != nullptr && wires.at(i)->getName() != "") {
+			wires.at(i)->setHistory(wires.at(i)->getHistory());
+			wires.at(i)->printHistory();
 		}
 	}
 }
