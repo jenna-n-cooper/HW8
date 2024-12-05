@@ -95,6 +95,7 @@ int main() {
 
 	getline(inFile, line);
 	while (!inFile.eof()) {
+		//at every line in the Circuit file, create a wire
 		inFile >> ioo;
 		if (ioo == "INPUT" || ioo == "OUTPUT") {
 			inFile >> wn >> wnum;
@@ -104,7 +105,7 @@ int main() {
 			newWire->setValue(0.5);
 
 			cir.wires.at(wnum) = newWire;
-
+			//add the input wires to inputs and the output wires to outputs
 			if (ioo == "INPUT") {
 				cir.inputs.at(wnum) = newWire;
 
@@ -114,11 +115,14 @@ int main() {
 			}
 		}
 		else {
+			//if it's a not gate, it will only have one input
 			if (ioo == "NOT") {
 				inFile >> sTime >> in1 >> out;
+				//the second input is an empty wire 
 				wireIn2 = new Wire();
 			}
 			else {
+				//otherwise, it will have two inputs
 				inFile >> sTime >> in1 >> in2 >> out;
 				wireIn2 = cir.getOrCreateWire(in2);
 			}
@@ -128,6 +132,7 @@ int main() {
 			wireOut = cir.getOrCreateWire(out);
 			newGate = new Gate(wireIn1, wireIn2, wireOut, stoi(sTime), ioo);
 			cir.gates.push_back(newGate);
+			//make sure that all input wires are in the vector
 			cir.addAllWiresToInputVector(newGate);
 		}
 		
@@ -153,6 +158,7 @@ int main() {
 	
 
 	while (!inFile.eof()) {
+		//at every line in the vector file, create an event and add it to the priority queue
 		cir.pq = new priorityQueue;
 		inFile >> ioo >> eventName >> eventTime >> eventVal;
 
