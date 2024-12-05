@@ -5,7 +5,7 @@
 using namespace std;
 
 Wire::Wire()
-{
+{//set value at -0.5 so that we know when it has been changed
 	value = -0.5;
 	name = "";
 	index = 0;
@@ -41,7 +41,7 @@ void Wire::setValue(double val)
 }
 
 void Wire::setVectorForHistory(double histVec, priorityQueue* pq)
-{
+{//set the changed value at the time that it changes
 	int histTime;
 	histTime = pq->getKey();
 	if (histTime < history.size()) {
@@ -51,10 +51,8 @@ void Wire::setVectorForHistory(double histVec, priorityQueue* pq)
 
 void Wire::setHistory(vector <double> his)
 {
-	// wait until event class to fix
-	//history.push_back(his);
 
-	// takes in vector with values index at specific times
+	// changes curval and history.at(0) if the value has not been changed at time 0
 	double curval = history.at(0);
 	if (curval == -0.5) {
 		curval = 0.5;
@@ -114,7 +112,7 @@ int Wire::getIndex() const
 void Wire::printHistory() const
 {
 	cout << endl << " " << name << " " << "|" << " ";
-	for (int i = 0; i < history.size(); i++) {
+	for (int i = 0; i < history.size(); i++) {//prints an X for no val, and then _ for 0 and - for 1
 		if (history.at(i) == 0.5) {
 			cout << "X";
 		}
@@ -131,9 +129,10 @@ void Wire::printHistory() const
 
 void Wire::printTime() const
 {
+	//prints the bar above the time indices
 	cout << "_______________________________________________________________" << endl << " T:  " << "";
 	for (int i = 0; i < history.size(); i = i + 5) {
-
+		//prints the time indices
 		if (i < 6) {
 			cout << i << "    ";
 		}

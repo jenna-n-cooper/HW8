@@ -25,6 +25,7 @@ public:
 	Event* getEvent() const { return pqEvents; }
 	void   setEvent(Event* events) { pqEvents = events; }
 
+	//overload the < operator
 	friend bool operator <(const priorityQueue& p1, const priorityQueue& p2);
 
 private:

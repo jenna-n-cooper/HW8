@@ -11,7 +11,7 @@ Event::Event(string eventName, int eventTime, double eventVal)
 }
 
 Event::Event()
-{
+{//set time at -4 so we know if it doesn't get properly changed
 	name = "";
 	time = -4;
 	val = -1;

@@ -20,7 +20,7 @@ int Gate::getDelay() const
 }
 
 Wire* Gate::getInput(int num) const
-{
+{//returns the desired input
 	if (num == 1) {
 		return in1;
 	}
@@ -45,7 +45,8 @@ string Gate::getType() const
 
 double Gate::negateVal(double val) const
 {
-	return 1 - val;
+	return 1 - val;//since the "base val" is 0.5, we can get the negation of each value by doing 1- val. 
+	                //ex: 1 - 0 = 1, 1 - 1 = 0, 1 - 0.5 = 0.5 (this is a concept from fuzzy logic)
 }
 
 double Gate::returnVal(Wire* input1, Wire* input2, Wire* output, int d, string t) const
@@ -56,18 +57,18 @@ double Gate::returnVal(Wire* input1, Wire* input2, Wire* output, int d, string t
 			return 0.5;
 		}
 		else {
-			return min(input1->getValue(), input2->getValue());
+			return min(input1->getValue(), input2->getValue());//the and function returns the min of the values
 		}
 	}
 	else if (t == "NAND") {
-		return negateVal(min(input1->getValue(), input2->getValue()));
+		return negateVal(min(input1->getValue(), input2->getValue())); //the NAND function negates the and 
 	}
 	else if (t == "OR") {
-		return max(input1->getValue(), input2->getValue());
+		return max(input1->getValue(), input2->getValue()); //this is the opposite of the AND function, it returns the max
 	}
 	else if (t == "NOR"){
 
-		if (input1->getValue() == 0.5 || input2->getValue() == 0.5) {
+		if (input1->getValue() == 0.5 || input2->getValue() == 0.5) { //this is the negation of OR
 			if (input1->getValue() == 1.0 || input2->getValue() == 1.0) {
 				return 0;
 			}
@@ -79,7 +80,7 @@ double Gate::returnVal(Wire* input1, Wire* input2, Wire* output, int d, string t
 			return negateVal(max(input1->getValue(), input2->getValue()));
 		}
 	}
-	else if (t == "XOR") {//not sure if this gate logic is correct
+	else if (t == "XOR") {//the exclusive OR is not a min or max, so we hard coded it 
 		if (input1->getValue() == input2->getValue()) {
 			return 0.0;
 		}
@@ -92,7 +93,7 @@ double Gate::returnVal(Wire* input1, Wire* input2, Wire* output, int d, string t
 			}
 		}
 	}
-	else if (t == "XNOR") {
+	else if (t == "XNOR") {//negation of XOR
 		double num;
 		if (input1->getValue() == input2->getValue()) {
 			num = 0.0;
@@ -108,7 +109,7 @@ double Gate::returnVal(Wire* input1, Wire* input2, Wire* output, int d, string t
 		return negateVal(num);
 
 	}
-	else if (t == "NOT") {
+	else if (t == "NOT") {//we negate the values
 		if (input1->getValue() == 1) {
 			return 0.0;
 		}

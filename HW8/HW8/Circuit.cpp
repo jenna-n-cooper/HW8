@@ -13,7 +13,7 @@ using namespace std;
 
 Circuit::Circuit(int numline)
 {
-	
+	//set all values to nullptr
 	for (int i = 0; i < numline; i++) {
 		inputs.push_back(nullptr);
 		outputs.push_back(nullptr);
@@ -23,12 +23,12 @@ Circuit::Circuit(int numline)
 }
 
 Wire* Circuit::getOrCreateWire(int num)
-{
+{//if there is a wire at this val return it. Otherwise, create a new wire
 	if (wires.at(num) != nullptr) {
 		return wires.at(num);
 	}
 	else {
-		Wire* w = new Wire;
+		Wire* w = new Wire;//dynamically allocate new memory for the wire pointer
 		w->setIndex(num);
 		wires.at(num) = w;
 		inputs.at(num) = w;
@@ -38,18 +38,19 @@ Wire* Circuit::getOrCreateWire(int num)
 
 bool Circuit::gateOutputEquality(Event* e, Gate* g)
 {
+	//find the original result of the gate evaluation
 	double origVal = g->returnVal(g->getInput(1), g->getInput(2), g->getOutput(), g->getDelay(), g->getType());
 	double newVal;
 	Wire* w = new Wire();
 	w->setValue(e->val);
-
+	//find the new value
 	if (getWireFromName(e->name) == g->getInput(2)) {
 		newVal = g->returnVal(g->getInput(1), w, g->getOutput(), g->getDelay(), g->getType());
 	}
 	else {
 		newVal = g->returnVal(w, g->getInput(2), g->getOutput(), g->getDelay(), g->getType());
 	}
-
+	//if they are the same, GateOutputEquality is true
 	if (newVal == origVal) {
 		return true;
 	}
@@ -60,7 +61,7 @@ bool Circuit::gateOutputEquality(Event* e, Gate* g)
 }
 
 bool Circuit::areInputWiresInInputVector(Wire* w)
-{
+{//make sure all input wires are in vector. (some input wires are classified as output in the circuit text file
 	for (int i = 0; i < inputs.size(); i++) {
 		if (inputs.at(i) == w) {
 			return true;
@@ -70,7 +71,7 @@ bool Circuit::areInputWiresInInputVector(Wire* w)
 }
 
 void Circuit::addAllWiresToInputVector(Gate* g)
-{
+{//if the wire is not added to the input vector, add it. 
 	if (!(areInputWiresInInputVector(g->getInput(1)))) {
 		inputs.at(g->getInput(1)->getIndex()) = g->getInput(1);
 	}
@@ -116,18 +117,13 @@ Event* Circuit::outputChange(Event* e, Gate* g)
 
 Wire* Circuit::getWireFromName(string wireName)
 {
-	
-	//problem with differentiating between input and output
-	//the are fewer items in the list than values when checking 
-	//because it doesn't understand that there are
-	
+	//getting wire from name. first we check inputs and then outputs
 	for (int i = 1; i < inputs.size(); i++) {
 		if (inputs.at(i) != nullptr && inputs.at(i)->getName() == wireName) {
 			return inputs.at(i);
 		}
 		
 	}
-
 	for (int j = 1; j < outputs.size(); j++) {
 		if (outputs.at(j) != nullptr && outputs.at(j)->getName() == wireName) {
 			return outputs.at(j);
@@ -156,10 +152,11 @@ void Circuit::evaluateEvent(priorityQueue* cpq) {
 			newQueue->setKey(key);
 			newQueue->setEvent(newEvent);
 			newQueue->setSKey(numkey);
+			//add the object to the priority queue
 			prio.push(*newQueue);
 		}
 	}
-	//change wire value
+	//change wire value and set history
 	w->setValue(e->val);
 	w->setVectorForHistory(w->getValue(), cpq);
 
@@ -182,7 +179,8 @@ void Circuit::printWires()
 }
 
 void Circuit::setAllDrivesForWires()
-{
+{//making sure all the wires point to the gates that they drive
+	//iterating through all the wires and gates
 	for (int j = 0; j < inputs.size(); j++) {
 		for (int i = 0; i < gates.size(); i++) {
 			if (inputs.at(j) == gates.at(i)->getInput(1) || inputs.at(j) == gates.at(i)->getInput(2)) {
