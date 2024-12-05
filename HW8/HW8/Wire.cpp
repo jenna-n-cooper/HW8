@@ -6,14 +6,14 @@ using namespace std;
 
 Wire::Wire()
 {
-	value = 0.5;
+	value = -0.5;
 	name = "";
 	index = 0;
 	out = {};
 	history.resize(61);
 	for (int i = 0; i < history.size(); i++) {
 
-		history.at(i) = 0.5;
+		history.at(i) = -0.5;
 
 	}
 
@@ -56,6 +56,10 @@ void Wire::setHistory(vector <double> his)
 
 	// takes in vector with values index at specific times
 	double curval = history.at(0);
+	if (curval == -0.5) {
+		curval = 0.5;
+		history.at(0) = 0.5;
+	}
 
 	// goes through the whole vector
 	for (int i = 1; i < history.size(); ++i) {
@@ -63,7 +67,7 @@ void Wire::setHistory(vector <double> his)
 
 		double somet = history.at(i);
 
-		if (somet == 0.5) {
+		if (somet == -0.5) {
 			// if nothing, places the value of previous in spot
 			history.at(i) = curval;
 		}
@@ -72,7 +76,7 @@ void Wire::setHistory(vector <double> his)
 			curval = history.at(i);
 		}
 	}
-
+	
 }
 
 void Wire::setDrives(Gate* gate)
