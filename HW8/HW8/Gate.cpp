@@ -51,7 +51,13 @@ double Gate::negateVal(double val) const
 double Gate::returnVal(Wire* input1, Wire* input2, Wire* output, int d, string t) const
 {//one of “NOT”, “AND”, “OR”, “XOR”, “NAND”, “NOR”, and “XNOR”
 	if (t == "AND") {
-		return min(input1->getValue(), input2->getValue());
+
+		if (input1->getValue() == 0.5 || input2->getValue() == 0.5) {
+			return 0.5;
+		}
+		else {
+			return min(input1->getValue(), input2->getValue());
+		}
 	}
 	else if (t == "NAND") {
 		return negateVal(min(input1->getValue(), input2->getValue()));

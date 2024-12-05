@@ -42,7 +42,8 @@ bool Circuit::gateOutputEquality(Event* e, Gate* g)
 	double newVal;
 	Wire* w = new Wire();
 	w->setValue(e->val);
-	if (w->getValue() == g->getInput(1)->getValue()) {
+
+	if (getWireFromName(e->name) == g->getInput(2)) {
 		newVal = g->returnVal(g->getInput(1), w, g->getOutput(), g->getDelay(), g->getType());
 	}
 	else {
@@ -96,7 +97,7 @@ Event* Circuit::outputChange(Event* e, Gate* g)
 
 	ocWire->setValue(e->val);
 	// gets the new value of the output of the gate
-	if (ocWire->getValue() == g->getInput(1)->getValue()) {
+	if (getWireFromName(e->name) == g->getInput(2)) {
 		newVal = g->returnVal(g->getInput(1), ocWire, g->getOutput(), g->getDelay(), g->getType());
 	}
 	else {
