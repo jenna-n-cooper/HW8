@@ -154,7 +154,6 @@ void Wire::printHistory() const
 void Wire::printTime() const
 {
 	//prints the bar above the time indices
-	//cout << "_______________________________________________________________" << endl << " T:  " << "";
 	for (int i = 0; i < history.size() + 1; i++) {
 		cout << "_";
 	}
